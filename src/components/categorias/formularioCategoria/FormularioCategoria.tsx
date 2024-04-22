@@ -2,7 +2,6 @@ import { ChangeEvent, useContext, useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import Categoria from '../../../models/Categoria';
 import { atualizar, buscar, cadastrar } from '../../../services/Service';
-import { toastAlerta } from '../../../utils/toastAlerta';
 
 function FormularioCategoria() {
   const [categoria, setCategoria] = useState<Categoria>({} as Categoria);

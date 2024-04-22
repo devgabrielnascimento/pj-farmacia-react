@@ -1,17 +1,22 @@
+import { Link, useNavigate } from 'react-router-dom'
 function Navbar() {
- 
+  const navigate = useNavigate()
+
+  function logout() {
+    alert('Usuário deslogado com sucesso')
+    navigate('/login')
+}
   return (
     <>
      <div className='w-full bg-orange-500 text-white flex justify-center py-4'>
           <div className="container flex justify-between text-lg">
-            <div className='text-2xl font-bold uppercase'>Farmácia</div>
+          <Link to='/home' className='text-2xl font-bold uppercase'>Farmácia</Link>
 
             <div className='flex gap-4'>
-              <div className='hover:underline'>Produtos</div>
-              <div className='hover:underline'>Categorias</div>
-              <div className='hover:underline'>Cadastrar Categoria</div>
-              <div className='hover:underline'>Perfil</div>
-              <div className='hover:underline'>Sair</div>
+              <Link to="/produtos" className='hover:underline'>Produtos</Link>
+              <Link to="/categorias" className='hover:underline'>Categorias</Link>
+              <Link to="/cadastroCategoria" className='hover:underline'>Cadastrar Categoria</Link>
+              <Link to='' onClick={logout} className='hover:no-underline'>Sair</Link>
             </div>
           </div>
         </div>

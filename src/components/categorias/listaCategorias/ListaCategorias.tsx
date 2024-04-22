@@ -1,10 +1,9 @@
-import { useContext, useEffect, useState } from 'react';
+import {useEffect, useState } from 'react';
 import { Dna } from 'react-loader-spinner';
 import { useNavigate } from 'react-router-dom';
 import Categoria from '../../../models/Categoria';
 import { buscar } from '../../../services/Service';
 import CardCategorias from '../cardCategorias/CardCategorias';
-import { toastAlerta } from '../../../utils/toastAlerta';
 
 function ListaCategorias() {
   const [categorias, setCategorias] = useState<Categoria[]>([]);
@@ -14,8 +13,12 @@ function ListaCategorias() {
 
 
   async function buscarCategorias() {
-   
+    try {
+      await buscar('/categorias', setCategorias, {
+        headers: { Authorization: token },
+      });
     } catch (error: any) {
+    
       if(error.toString().includes('403')) {
         toastAlerta('O token expirou, favor logar novamente', 'info')
         handleLogout()
